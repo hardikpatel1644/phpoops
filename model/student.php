@@ -16,5 +16,7 @@ class student extends Model
     {
         parent::__construct($this->ssTableName, $this->ssAlias, $this->ssPrimaryKey);
     }
+    
+    
 
 }

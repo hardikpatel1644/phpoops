@@ -157,10 +157,16 @@ class Model extends Db
      * Function to get All data
      * @return array
      */
-    public function getAllData()
+    public function getAllData($ssSearchBy = '',$ssSearchVal = '')
     {
+        $ssWhere = '';
+        if($ssSearchBy != '' && $ssSearchVal != '')
+        {
+            $ssWhere .= " WHERE ".$ssSearchBy. " LIKE '%".$ssSearchVal."%'";
+        }
+        
         $asData = array();
-        $ssQuery = "SELECT * FROM $this->ssTableName";
+        $ssQuery = "SELECT * FROM $this->ssTableName  $ssWhere";
         $obQuery = $this->obCon->query($ssQuery);
 
         while ($obResult = $obQuery->fetch(PDO::FETCH_ASSOC))
